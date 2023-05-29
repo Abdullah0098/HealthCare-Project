@@ -2,6 +2,6 @@
 
 with raw_location as 
 (
-    select * from {{ source('src_healthcare_raw', 'LOCATION') }}
+    select * from {{ source('src_healthcare_raw', 'DIM_LOCATION') }}
 )
 select * from raw_location

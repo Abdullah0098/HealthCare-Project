@@ -2,6 +2,6 @@
 
 with raw_diagnosis as 
 (
-    select * from {{ source('src_healthcare_raw', 'DIAGNOSIS') }}
+    select * from {{ source('src_healthcare_raw', 'DIM_DIAGNOSIS') }}
 )
 select * from raw_diagnosis
