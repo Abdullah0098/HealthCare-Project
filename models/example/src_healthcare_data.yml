@@ -14,3 +14,5 @@ sources:
       - name: PHYSICIAN
       - name: TRANSACTION
       - name: DATADICTIONARY
+      - name: fct_id
+      - name: fact_table

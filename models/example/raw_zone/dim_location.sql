@@ -1,7 +1,7 @@
 {{ config(materialized="table") }}
 
-with raw_location as 
+with dim_location as 
 (
     select * from {{ source('src_healthcare_raw', 'LOCATION') }}
 )
-select * from raw_location
+select * from dim_location

@@ -1,7 +1,7 @@
 {{ config(materialized="table") }}
 
-with raw_datadictionary as 
+with dim_datadictionary as 
 (
     select * from {{ source('src_healthcare_raw', 'DATADICTIONARY') }}
 )
-select * from raw_datadictionary
+select * from dim_datadictionary
