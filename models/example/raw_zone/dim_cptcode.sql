@@ -1,8 +1,8 @@
 {{ config(materialized="table") }}
 
-with raw_cptcode as 
+with dim_cptcode as 
 (
-    select * from {{ source('src_healthcare_raw', 'DIM_CPTCODE') }}
+    select * from {{ source('src_healthcare_raw', 'CPTCODE') }}
 )
-select * from raw_cptcode
+select * from dim_cptcode
 

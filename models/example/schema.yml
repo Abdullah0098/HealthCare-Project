@@ -1,0 +1,48 @@
+version: 2
+
+models:
+  - name: fct_id
+    description: Check whether the values of fact_id is unique or not
+    columns:
+      - name: fact_id
+        tests:
+          - unique
+
+
+  - name: dim_cptcode
+    description: Check!! There should be no other values in the column except those mentioned below
+    columns:
+      - name: cptgrouping
+        tests:
+          - accepted_values:
+              values: ['Medicine','Surgery','Radiology','Misc', 'Hospital','Nursing/Rest/Home','CPT Cat II Codes','Office','PathLab','HCPCS Level II Codes']
+
+
+
+  - name: fact_table
+    description: All the columns should be of a data type integer
+    tests:
+      - dbt_expectations.expect_column_values_to_be_in_type_list:
+          column_type_list: [int]
+
+      - dbt_expectations.expect_table_column_count_to_be_between:
+          min_value: 2 
+          max_value: 15 
+
+      - dbt_expectations.expect_column_pair_values_to_be_equal:
+          column_A: fact_id
+          column_B: dim_patient_id
+# This condition should be false
+
+#COMPARING THE ROWS OF TWO TABLES
+      - dbt_expectations.expect_table_row_count_to_equal_other_table:
+          compare_model: ref("dim_patient")
+          group_by: [patient_id] # (Optional)
+
+
+  - name: dim_patient
+    tests:
+      - dbt_expectations.expect_column_max_to_be_between:
+          min_value: 1 # (Optional)
+          max_value: 100 # (Optional)
+          strictly: false # (Optional. Default is 'false'. Adds an 'or equal to' to the comparison operator for min/max)

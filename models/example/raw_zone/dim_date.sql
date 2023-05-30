@@ -1,7 +1,7 @@
 {{ config(materialized="table") }}
 
-with raw_date as 
+with dim_date as 
 (
-    select * from {{ source('src_healthcare_raw', 'DIM_DATE') }}
+    select * from {{ source('src_healthcare_raw', 'DATE') }}
 )
-select * from raw_date
+select * from dim_date
