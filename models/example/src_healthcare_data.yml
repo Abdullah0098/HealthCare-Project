@@ -3,7 +3,7 @@ version: 2
 sources:
   - name: src_healthcare_raw
     database: healthcare  
-    schema: source  
+    schema: star_schema  
     tables:
       - name: CPTCODE
       - name: DATE
