@@ -1,13 +1,15 @@
 version: 2
 
 models:
-  - name: fct_id
+  - name: dim_location
     description: Check whether the values of fact_id is unique or not
     columns:
-      - name: fact_id
+      - name: location_id
         tests:
           - unique
+          - not_null
 
+              
 
   - name: dim_cptcode
     description: Check!! There should be no other values in the column except those mentioned below
@@ -34,15 +36,17 @@ models:
           column_B: dim_patient_id
 # This condition should be false
 
-#COMPARING THE ROWS OF TWO TABLES
+#COMPARING THE ROWS OF TWO TABLES - both are different and hence will throw an error
       - dbt_expectations.expect_table_row_count_to_equal_other_table:
           compare_model: ref("dim_patient")
           group_by: [patient_id] # (Optional)
 
 
-  - name: dim_patient
-    tests:
-      - dbt_expectations.expect_column_max_to_be_between:
-          min_value: 1 # (Optional)
-          max_value: 100 # (Optional)
-          strictly: false # (Optional. Default is 'false'. Adds an 'or equal to' to the comparison operator for min/max)
+
+      - dbt_utils.equality:
+          compare_model: ref('dim_cptcode')
+          compare_columns:
+            - cptcode_id
+          
+
+

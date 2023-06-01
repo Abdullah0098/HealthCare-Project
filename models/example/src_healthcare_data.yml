@@ -3,16 +3,26 @@ version: 2
 sources:
   - name: src_healthcare_raw
     database: healthcare  
-    schema: source  
+    schema: star_schema  
     tables:
-      - name: CPTCODE
-      - name: DATE
-      - name: DIAGNOSIS
-      - name: LOCATION
-      - name: PATIENT
-      - name: PAYER
-      - name: PHYSICIAN
-      - name: TRANSACTION
-      - name: DATADICTIONARY
-      - name: fct_id
+      - name: DIM_CPTCODE
+      - name: DIM_DATE
+      - name: DIM_DIAGNOSIS
+      - name: DIM_LOCATION
+      - name: DIM_PATIENT
+      - name: DIM_PAYER
+      - name: DIM_PHYSICIAN
+      - name: DIM_TRANSACTION
+      - name: DIM_DATADICTIONARY
       - name: fact_table
+
+  - name: src_chicagocrime
+    database: dbt_raw
+    schema: raw_schema
+    tables:
+      - name: chicagocrimedata
+        columns:
+          - name: id
+            tests:
+              - unique
+            
