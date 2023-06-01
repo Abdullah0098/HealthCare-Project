@@ -62,3 +62,4 @@ LEFT JOIN
 )
 
 select * from fact_table_comb
+
