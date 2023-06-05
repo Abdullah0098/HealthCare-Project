@@ -1,0 +1,22 @@
+version: 2
+
+exposures:
+
+  - name: CHICAGOCRIMEDATA
+    label: ALL THE CRIME RECORDS OF US STATE CHICAGO
+    type: analysis
+    maturity: high
+#    url: https://bi.tool/dashboards/1
+    description: "THIS MODEL CONTAINS ALL THE DATA WITH EVERY PERSPETIVE"
+
+    depends_on:
+      - ref('chicagocrimedata')
+      - source('src_chicagocrime', 'chicagocrimedata') 
+
+
+    owner:
+      name: Abdullah Najeeb
+      email: abdullahnajeeb0305@gmail.com
+
+
+    

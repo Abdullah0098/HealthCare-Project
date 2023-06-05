@@ -19,10 +19,21 @@ seed-paths: ["seeds"]
 macro-paths: ["macros"]
 snapshot-paths: ["snapshots"]
 
+
+# Hook defining:
+on-run-start: ["truncate table dbt_raw.hooks.dbt_audits", "Insert into dbt_raw.hooks.dbt_audits (audit_type) values ('Logged in')"]
+on-run-end: "Insert into dbt_raw.hooks.dbt_audits (audit_type) values ('Logged out')"
+
+
 target-path: "target"  # directory which will store compiled SQL files
 clean-targets:         # directories to be removed by `dbt clean`
   - "target"
   - "dbt_packages"
+
+vars:
+  my_var: "THEFT"
+  chc_src_test : "src_chicagocrime"
+
 
 
 # Configuring models
@@ -31,8 +42,25 @@ clean-targets:         # directories to be removed by `dbt clean`
 # In this example config, we tell dbt to build all models in the example/ directory
 # as tables. These settings can be overridden in the individual model files
 # using the `{{ config(...) }}` macro.
-models:
-  my_new_project:
-    # Applies to all files under models/example/
-    example:
-      materialized: table
+  models:
+    my_new_project:
+      # Applies to all files under models/example/
+      example:
+        materialized: table
+        chicagocrime:
+          +pre-hook: "Insert into dbt_raw.hooks.dbt_audits (audit_type) values ('chicagocrmie model pre-hook')"
+#          schema: chic_crime # optional because in dbt cloud it is already defined but in settings of project - after defining schema again here it will combine it with the one defined in settings
+          tags: 
+            - crime
+          tests:
+            config:
+              +store_failures: true
+          
+        raw_zone:
+
+          +post-hook: "Insert into dbt_raw.hooks.dbt_audits (audit_type) values ('healthcare folder post-hook')"
+          schema: raw_zone
+          tags:
+            - healthcare
+            - health
+        

@@ -21,6 +21,7 @@ sources:
     schema: raw_schema
     tables:
       - name: chicagocrimedata
+        tags: ['src_chicagocrime']
         columns:
           - name: id
             tests:
