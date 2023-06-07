@@ -1,0 +1,30 @@
+version: 2
+
+metrics:
+  - name: average_unit_price
+    model: ref('sales')
+    label: average amount unit price
+    description: "The average amount of unit price"
+
+    calculation_method: average
+    expression: Sale_amt
+
+    timestamp: orderdate
+    time_grains: [day, week, month, quarter, year, all_time]
+    dimensions:
+      - Region
+      - item
+      - SalesMan
+
+    filters:
+    - field: Unit_price
+      operator: '>='
+      value: "500"
+    - field: Units
+      operator: '>='
+      value: '50'
+
+  # general properties
+    config:
+        enabled: true
+        treat_null_values_as_zero: true

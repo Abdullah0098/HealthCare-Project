@@ -5,9 +5,14 @@ models:
     description: Check whether the values of fact_id is unique or not
     columns:
       - name: location_id
+        tags: ['loc_tag']
         tests:
-          - unique
+          - unique:
+              store_failures: true
+              schema: "loc_test_uniq"
+
           - not_null
+          
 
               
 
@@ -15,6 +20,7 @@ models:
     description: Check!! There should be no other values in the column except those mentioned below
     columns:
       - name: cptgrouping
+        tags: ['cpt_test_tag']
         tests:
           - accepted_values:
               values: ['Medicine','Surgery','Radiology','Misc', 'Hospital','Nursing/Rest/Home','CPT Cat II Codes','Office','PathLab','HCPCS Level II Codes']
