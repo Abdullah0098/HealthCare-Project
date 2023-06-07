@@ -1,0 +1,22 @@
+version: 2
+metrics:
+  - name: total_revenue
+    label: The revenue of our business
+    model: ref('order_events')
+    description: "The revenue for our business, as defined by Jerry in Finance"
+
+    calculation_method: sum
+    expression: (amount)
+
+    timestamp: event_date
+    time_grains: [day, week, month, year, all_time]
+
+    dimensions:
+      - customer_status
+      - order_country
+
+    ## We don't need this section because we chose option 1
+    ## filters:
+    ##   - field: order_status
+    ##     operator: '='
+    ##     value: 'completed

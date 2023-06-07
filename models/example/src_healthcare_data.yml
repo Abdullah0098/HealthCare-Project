@@ -2,8 +2,8 @@ version: 2
 
 sources:
   - name: src_healthcare_raw
-    database: healthcare  
-    schema: star_schema  
+    database: healthcare
+    schema: star_schema
     tables:
       - name: DIM_CPTCODE
       - name: DIM_DATE
@@ -21,9 +21,24 @@ sources:
     schema: raw_schema
     tables:
       - name: chicagocrimedata
-        tags: ['src_chicagocrime']
+        tags: ["src_chicagocrime"]
         columns:
           - name: id
             tests:
               - unique
-            
+              - not_null
+
+  - name: snapshot_demo
+    database: demo
+    schema: practice
+    tables:
+      - name: snapshot
+      - name: snapshot_2
+
+
+  - name: order_events
+    database: demo
+    schema: practice
+    tables:
+      - name: events_order
+      - name: sales
