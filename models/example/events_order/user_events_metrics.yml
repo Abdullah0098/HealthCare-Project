@@ -1,18 +1,18 @@
 version: 2
 metrics:
-  - name: total_revenue
-    label: The revenue of our business
-    model: ref('order_events')
-    description: "The revenue for our business, as defined by Jerry in Finance"
+  - name: total_revenue #assign a short and unqiue name for the metric
+    label: The revenue of our business # label can be a bit detail of it
+    model: ref('order_events') # it is the model of which metric is to be find.
+    description: "The revenue for our business, as defined by Jerry in Finance" # bried description about the project
 
-    calculation_method: sum
-    expression: (amount)
+    calculation_method: sum # what kind of calculation to be performed (sum,min,max,avg,median,derive)
+    expression: (amount) # the column on which operation is to be performed
 
-    timestamp: event_date
-    time_grains: [day, week, month, year, all_time]
+    timestamp: event_date # it is the time stamp of which we will be filtering for the results
+    time_grains: [day, week, month, year, all_time] # it is the time frame defined and we could filter it by the time defined here
 
     dimensions:
-      - customer_status
+      - customer_status # these are the dimensions we will be having in the final table
       - order_country
 
     ## We don't need this section because we chose option 1

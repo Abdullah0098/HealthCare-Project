@@ -17,14 +17,14 @@ metrics:
       - SalesMan
 
     filters:
-    - field: Unit_price
-      operator: '>='
-      value: "500"
+    - field: Unit_price #column name
+      operator: '>=' # operation we want to perform
+      value: "500" # conditional value to which against the filteration is performed
     - field: Units
       operator: '>='
       value: '50'
 
   # general properties
     config:
-        enabled: true
-        treat_null_values_as_zero: true
+        enabled: true # after enabling the metric config, then it will consider it as a part of the dbt project
+        treat_null_values_as_zero: true # the null values are replaced with 0
