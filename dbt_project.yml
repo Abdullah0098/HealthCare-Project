@@ -7,7 +7,7 @@ config-version: 2
 
 # This setting configures which "profile" dbt uses for this project.
 profile: "default"
-
+ 
 # These configurations specify where dbt should look for different types of files.
 # The `source-paths` config, for example, states that models in this project can be
 # found in the "models/" directory. You probably won't need to change these!
@@ -43,6 +43,8 @@ models:
           #          +pre-hook:
           #            ["truncate table dbt_raw.hooks.dbt_audits", "Insert into dbt_raw.hooks.dbt_audits (audit_type) values ('chicagocrime model pre-hook')"]
           materialized: table
+#         database: demo
+          database: '{{env_var("DBT_CHICAGOCRIME_DATABASE","demo")}}'
           schema: chic_crime
           tags:
             - crime

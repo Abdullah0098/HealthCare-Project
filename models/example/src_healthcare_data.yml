@@ -42,3 +42,13 @@ sources:
     tables:
       - name: events_order
       - name: sales
+      - name: sales_snapshot
+        identifier: sales_src_freshness
+        freshness:
+              warn_after:
+                count: 2
+                period: minute
+              error_after:
+                count: 5
+                period: hour
+        loaded_at_field: "convert_timezone('America/Los_Angeles', 'UTC', created_time)"

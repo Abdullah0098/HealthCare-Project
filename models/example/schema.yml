@@ -3,6 +3,8 @@ version: 2
 models:
   - name: dim_location
     description: Check whether the values of fact_id is unique or not
+    config:
+      tags: ['tag']
     columns:
       - name: location_id
         tags: ['loc_tag']
@@ -10,11 +12,20 @@ models:
           - unique:
               store_failures: true
               schema: "loc_test_uniq"
-
           - not_null
-          
+             
+  - name: chicagocrimedata
+    description: '{{doc("chicagocrime_doc")}}'
 
-              
+  - name: dim_transaction
+    columns:
+      - name: TRANSACTION_ID 
+        tags: ['test_transaction']
+        tests:
+          - unique
+          - not_null
+        
+                        
 
   - name: dim_cptcode
     description: Check!! There should be no other values in the column except those mentioned below
@@ -53,6 +64,4 @@ models:
           compare_model: ref('dim_cptcode')
           compare_columns:
             - cptcode_id
-          
-
 

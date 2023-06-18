@@ -4,4 +4,4 @@
 with sales as 
 (select * from {{ source('order_events', 'sales') }})
 
-select * from sales
+select * from sales 
