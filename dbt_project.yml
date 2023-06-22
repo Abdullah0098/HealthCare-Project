@@ -40,6 +40,7 @@ models:
     example:
       chicagocrime:
         chicagocrimedata:
+          
           #          +pre-hook:
           #            ["truncate table dbt_raw.hooks.dbt_audits", "Insert into dbt_raw.hooks.dbt_audits (audit_type) values ('chicagocrime model pre-hook')"]
           materialized: table
