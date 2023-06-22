@@ -1,10 +1,5 @@
-{% docs chicagocrime_doc %}
+{% docs __overview__ %}
+# Sole Owner
+# Syed Abddullah 
 
-hi there, this is the documentation block of chicagocrimedata
-how are you
-             
-  - name: chicagocrimedata
-    description: '{{docs("chicagocrime_doc")}}'
-    
-
-{% enddocs s%}
+{% enddocs %}

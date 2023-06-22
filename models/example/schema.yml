@@ -9,13 +9,18 @@ models:
       - name: location_id
         tags: ['loc_tag']
         tests:
-          - unique:
+          - unique:    
               store_failures: true
               schema: "loc_test_uniq"
-          - not_null
+
+          - not_null:
+              description: this test is for null 
              
   - name: chicagocrimedata
-    description: '{{doc("chicagocrime_doc")}}'
+    description: '{{ doc("__overview__") }}'
+    tests:
+      - unique
+          
 
   - name: dim_transaction
     columns:
